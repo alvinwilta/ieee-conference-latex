@@ -1,0 +1,53 @@
+{
+  "latex-workshop.kpsewhich.enabled": true,
+  "latex-workshop.intellisense.package.enabled": true,
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "latexmk",
+      // "tools": ["pdflatex", "bibtex","pdflatex", "pdflatex"]
+      "tools": ["latexmk", "copypdf"]
+    }
+  ],
+  "latex-workshop.latex.outDir": "%DIR%/build",
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": [
+        "-shell-escape",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-pdf",
+        "-bibtex",
+        "-outdir=./build/"
+      ]
+    },
+    {
+      "name": "pdflatex",
+      "command": "pdflatex",
+      "args": [
+        "-synctex=1",
+        "-file-line-error",
+        "--output-dir=%OUTDIR%",
+        "%DOC%"
+      ],
+      "env": {}
+    },
+    {
+      "name": "bibtex",
+      "command": "bibtex",
+      "args": ["%OUTDIR%/%DOCFILE%"],
+      "env": { "TEXMFOUTPUT": "%OUTDIR%" }
+    },
+    {
+      "name": "copypdf",
+      "command": "cp",
+      "args": ["%OUTDIR%/%DOCFILE%.pdf", "../"]
+    }
+  ],
+  "latex-workshop.view.pdf.invert": 0,
+  "editor.wordWrap": "on",
+  "editor.formatOnSave": true
+  // "workbench.colorTheme": "Better Solarized Light"
+}
